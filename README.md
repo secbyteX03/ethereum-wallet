@@ -109,45 +109,100 @@ npm start
 ```
 The application will open automatically at http://localhost:3000
 
-### 🚀 Deployment
+## 🚀 Deployment Guide
 
-#### Local Development
+### ⚙️ Network Configuration
+
+#### 1. Local Development
 ```bash
-# Start local node
-npx hardhat node
+# Start local Hardhat node with detailed gas reporting
+npx hardhat node --show-accounts --no-deploy
 
-# In a new terminal, deploy contracts
-npx hardhat run scripts/deploy.js --network localhost
+# In a new terminal, deploy with gas reporting
+npx hardhat run scripts/deploy.js --network localhost --show-stack-traces
 ```
 
-#### Testnet Deployment (Sepolia)
-1. Get test ETH from a [Sepolia faucet](https://sepoliafaucet.com/)
-2. Update `.env` with your Sepolia RPC URL and private key
-3. Deploy:
-   ```bash
-   npx hardhat run scripts/deploy.js --network sepolia
-   ```
-
-#### Mainnet Deployment
-⚠️ **Exercise extreme caution when deploying to mainnet**
-
-1. Ensure you have sufficient ETH for gas fees
-2. Double-check all contract parameters
-3. Deploy with:
-   ```bash
-   npx hardhat run scripts/deploy.js --network mainnet
-   ```
-   
-#### Gas Optimization
-To estimate gas costs before deployment:
+#### 2. Testnet (Sepolia)
 ```bash
+# Deploy with gas estimation
+npx hardhat run scripts/deploy.js --network sepolia \
+  --gasprice 2000000000 \
+  --gaslimit 5000000
+```
+
+#### 3. Mainnet Deployment
+```bash
+# Dry run first (simulate deployment)
+npx hardhat run scripts/deploy.js --network mainnet --dry-run
+
+# Actual deployment (remove --dry-run when ready)
+npx hardhat run scripts/deploy.js --network mainnet \
+  --gasprice 30000000000 \
+  --gaslimit 6000000 \
+  --confirmations 3
+```
+
+### ⚡ Gas Optimization
+
+#### Estimate Gas Usage
+```bash
+# Get detailed gas report
+REPORT_GAS=true npx hardhat test
+
+# Estimate deployment cost
 npx hardhat run scripts/deploy.js --network <network> --gas
 ```
 
-To verify your contract on Etherscan:
-```bash
-npx hardhat verify --network <network> <contract_address> <constructor_args>
+#### Gas Price Strategies
+```javascript
+// In hardhat.config.js
+module.exports = {
+  networks: {
+    mainnet: {
+      url: process.env.ETH_RPC_URL,
+      gasPrice: 'auto',  // Uses ethers' gas price oracle
+      gasMultiplier: 1.2, // Adds 20% to estimated gas
+      timeout: 20000,    // 20 seconds
+    },
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL,
+      gasPrice: 2000000000, // 2 Gwei
+      gas: 5000000,        // Gas limit
+    }
+  }
+};
 ```
+
+### 🔍 Contract Verification
+
+#### Verify on Etherscan
+```bash
+# Verify contract (mainnet)
+npx hardhat verify --network mainnet \
+  --contract contracts/TestFaucet.sol:TestFaucet \
+  <CONTRACT_ADDRESS> \
+  <CONSTRUCTOR_ARGS>
+
+# Verify with constructor arguments
+npx hardhat verify --network mainnet \
+  --constructor-args arguments.js \
+  <CONTRACT_ADDRESS>
+```
+
+#### Verification Troubleshooting
+- Ensure your contract is compiled with optimization if used in deployment
+- Double-check constructor arguments
+- Verify network and contract address are correct
+- For complex verifications, use the `--debug` flag
+
+### 🛡️ Security Best Practices
+
+1. **Always** test on testnet first
+2. Use `--dry-run` to simulate deployments
+3. Set appropriate gas limits and prices
+4. Consider using a multisig wallet for production deployments
+5. Keep your private keys secure using environment variables
+6. Monitor gas prices using [ETH Gas Station](https://ethgasstation.info/)
 
 ## 📁 Project Structure
 
