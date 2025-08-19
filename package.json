@@ -20,7 +20,7 @@
         "react",
         "web3"
     ],
-    "author": "Your Name",
+    "author": "Magret Faith",
     "license": "MIT",
     "devDependencies": {
         "@nomicfoundation/hardhat-toolbox": "^3.0.0",
