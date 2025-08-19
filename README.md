@@ -2,6 +2,11 @@
 
 A secure and user-friendly Ethereum wallet application built with React and Hardhat. This application allows you to interact with the Ethereum blockchain, manage your ETH balance, and perform transactions with ease.
 
+## 📸 Screenshot
+
+![Ethereum Wallet Interface](./screenshots/wallet-screenshot.png)
+*Ethereum Wallet Interface - Showing balance, send, and receive functionality*
+
 ## ✨ Features
 
 - 🔐 Secure wallet connection via MetaMask
@@ -27,9 +32,10 @@ A secure and user-friendly Ethereum wallet application built with React and Hard
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v14 or later)
-- npm or yarn
+- Node.js (v16 or later)
+- npm (v8 or later) or yarn (v1.22 or later)
 - [MetaMask](https://metamask.io/) browser extension
+- Git (for cloning the repository)
 
 ### Installation
 
@@ -44,38 +50,104 @@ A secure and user-friendly Ethereum wallet application built with React and Hard
    # Install root dependencies
    npm install
    
-   # Install frontend dependencies
+   # Navigate to frontend and install its dependencies
    cd frontend
    npm install
    cd ..
    ```
 
-3. **Set up environment variables**
+3. **Environment Setup**
    ```bash
+   # Copy the example environment file
    cp .env.example .env
    ```
-   Update the `.env` file with your configuration.
-
-### Running the Application
-
-1. **Start Local Blockchain** (in a new terminal)
-   ```bash
-   npx hardhat node
+   
+   Update the `.env` file with your configuration:
+   ```
+   # RPC URL for connecting to Ethereum networks
+   ETH_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/YOUR_API_KEY
+   
+   # Private key for deploying contracts (NEVER commit this!)
+   PRIVATE_KEY=your_private_key_here
+   
+   # Optional: Etherscan API key for contract verification
+   ETHERSCAN_API_KEY=your_etherscan_api_key
    ```
 
-2. **Deploy Contracts** (in a new terminal)
+### 🏃‍♂️ Running Locally
+
+#### 1. Start Local Development Network
+Open a new terminal and run:
+```bash
+npx hardhat node
+```
+This will start a local Ethereum node with 20 test accounts, each with 10,000 test ETH.
+
+#### 2. Deploy Smart Contracts
+In a new terminal, deploy the contracts to your local network:
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+#### 3. Configure MetaMask
+1. Open MetaMask and switch to "Localhost 8545" network (or add it if not present):
+   - Network Name: Hardhat Local
+   - RPC URL: http://127.0.0.1:8545
+   - Chain ID: 31337
+   - Currency Symbol: ETH
+
+2. Import a test account:
+   - Copy a private key from the Hardhat node output
+   - In MetaMask, click on your account icon → Import Account
+   - Paste the private key and click "Import"
+
+#### 4. Start the Frontend
+In a new terminal:
+```bash
+cd frontend
+npm start
+```
+The application will open automatically at http://localhost:3000
+
+### 🚀 Deployment
+
+#### Local Development
+```bash
+# Start local node
+npx hardhat node
+
+# In a new terminal, deploy contracts
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+#### Testnet Deployment (Sepolia)
+1. Get test ETH from a [Sepolia faucet](https://sepoliafaucet.com/)
+2. Update `.env` with your Sepolia RPC URL and private key
+3. Deploy:
    ```bash
-   npx hardhat run scripts/deploy.js --network localhost
+   npx hardhat run scripts/deploy.js --network sepolia
    ```
 
-3. **Start Frontend** (in a new terminal)
-   ```bash
-   cd frontend
-   npm start
-   ```
+#### Mainnet Deployment
+⚠️ **Exercise extreme caution when deploying to mainnet**
 
-4. **Open in Browser**
-   The application will automatically open in your default browser at http://localhost:3000
+1. Ensure you have sufficient ETH for gas fees
+2. Double-check all contract parameters
+3. Deploy with:
+   ```bash
+   npx hardhat run scripts/deploy.js --network mainnet
+   ```
+   
+#### Gas Optimization
+To estimate gas costs before deployment:
+```bash
+npx hardhat run scripts/deploy.js --network <network> --gas
+```
+
+To verify your contract on Etherscan:
+```bash
+npx hardhat verify --network <network> <contract_address> <constructor_args>
+```
 
 ## 📁 Project Structure
 
