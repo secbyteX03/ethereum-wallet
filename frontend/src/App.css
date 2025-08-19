@@ -1,0 +1,802 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.App-header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem 1rem;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.App-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.App-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Main Content */
+.App-main {
+    flex: 1;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Footer */
+.App-footer {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* Connect Section */
+.connect-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.connect-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.connect-card,
+.metamask-warning {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.connect-card h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.connect-card p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.connect-button,
+.install-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+.connect-button:hover,
+.install-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.connect-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.connect-info {
+    text-align: left;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.connect-info h4 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.connect-info ul {
+    color: #666;
+    padding-left: 1rem;
+}
+
+.connect-info li {
+    margin-bottom: 0.5rem;
+}
+
+/* Info Box */
+.info-box {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.info-box h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.info-box ul {
+    color: #666;
+    padding-left: 1.5rem;
+}
+
+.info-box li {
+    margin-bottom: 0.5rem;
+}
+
+/* Wallet Container */
+.wallet-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.wallet-header {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.account-info h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.account-address {
+    font-family: 'Courier New', monospace;
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: #495057;
+    margin-bottom: 1rem;
+    word-break: break-all;
+}
+
+.disconnect-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.disconnect-btn:hover {
+    background: #c82333;
+}
+
+.network-info {
+    text-align: right;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.network-info strong {
+    color: #333;
+}
+
+/* Balance Display */
+.balance-container {
+    width: 100%;
+}
+
+.balance-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.balance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.balance-header h3 {
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.refresh-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.refresh-button:hover {
+    background: #f8f9fa;
+}
+
+.balance-display {
+    margin-bottom: 1.5rem;
+}
+
+.balance-main {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.balance-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.balance-currency {
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.balance-usd {
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.balance-info p {
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.balance-warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.balance-good {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Wallet Actions */
+.wallet-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .wallet-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Send Form */
+.send-container,
+.receive-container {
+    width: 100%;
+}
+
+.send-card,
+.receive-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.send-card h3,
+.receive-card h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group input.valid {
+    border-color: #28a745;
+}
+
+.form-group input.invalid {
+    border-color: #dc3545;
+}
+
+.validation-error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.amount-helpers {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.amount-preset {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.amount-preset:hover {
+    background: #e9ecef;
+}
+
+.send-button {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.send-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.send-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Transaction Status */
+.tx-status {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.tx-status.pending {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.tx-status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.tx-status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.tx-status code {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.25rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    word-break: break-all;
+}
+
+.etherscan-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.etherscan-link:hover {
+    text-decoration: underline;
+}
+
+/* Security Warning */
+.security-warning,
+.security-info {
+    background: #e7f3ff;
+    border: 1px solid #b8daff;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.security-warning p,
+.security-info h4 {
+    color: #004085;
+    margin-bottom: 0.5rem;
+}
+
+.security-warning ul,
+.security-info ul {
+    color: #004085;
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.security-warning li,
+.security-info li {
+    margin-bottom: 0.25rem;
+}
+
+/* Receive Section */
+.receive-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.qr-section {
+    text-align: center;
+}
+
+.qr-container {
+    display: inline-block;
+}
+
+.qr-code {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+    width: 100%;
+}
+
+.qr-label {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.qr-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    color: #666;
+}
+
+.address-section label {
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.address-display {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.address-text {
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+    color: #495057;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.address-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.copy-button,
+.share-button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover,
+.share-button:hover {
+    background: #5a6fd8;
+}
+
+.copy-button.copied {
+    background: #28a745;
+}
+
+.address-short {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Receive Instructions */
+.receive-instructions {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.receive-instructions h4 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.receive-instructions ol {
+    color: #666;
+    padding-left: 1.5rem;
+}
+
+.receive-instructions li {
+    margin-bottom: 0.5rem;
+}
+
+/* Faucet Links */
+.faucet-links {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.faucet-links h4 {
+    color: #856404;
+    margin-bottom: 1rem;
+}
+
+.faucet-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.faucet-link {
+    background: #856404;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.faucet-link:hover {
+    background: #6c5404;
+    text-decoration: none;
+    color: white;
+}
+
+.faucet-note {
+    color: #856404;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .App-header {
+        padding: 1.5rem 1rem;
+    }
+
+    .App-header h1 {
+        font-size: 2rem;
+    }
+
+    .App-main {
+        padding: 1rem;
+    }
+
+    .wallet-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .network-info {
+        text-align: center;
+    }
+
+    .connect-card,
+    .metamask-warning {
+        padding: 2rem 1.5rem;
+    }
+
+    .balance-amount {
+        font-size: 2.5rem;
+    }
+
+    .send-card,
+    .receive-card {
+        padding: 1.5rem;
+    }
+
+    .receive-content {
+        gap: 1.5rem;
+    }
+
+    .address-actions {
+        justify-content: center;
+    }
+
+    .faucet-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .App-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .balance-amount {
+        font-size: 2rem;
+    }
+
+    .wallet-actions {
+        gap: 1.5rem;
+    }
+
+    .send-card,
+    .receive-card {
+        padding: 1rem;
+    }
+
+    .connect-card,
+    .metamask-warning {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+        animation: none;
+    }
+
+    .connect-button:hover,
+    .send-button:hover {
+        transform: none;
+    }
+}
+
+/* Focus states for better accessibility */
+button:focus,
+input:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+
+    .connect-card,
+    .send-card,
+    .receive-card,
+    .balance-card {
+        border: 2px solid #000;
+    }
+
+    .form-group input {
+        border: 2px solid #000;
+    }
+}
