@@ -11,7 +11,7 @@ module.exports = {
     },
     // Sepolia testnet
     sepolia: {
-      url: process.env.ETH_RPC_URL || "https://sepolia.infura.io/v3/YOUR_INFURA_KEY",
+      url: process.env.ETH_RPC_URL || "https://gas.api.infura.io/v3/e14e4c89726e4d80b0afe3ef3e5c7338",
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       chainId: 11155111
     }
