@@ -35,7 +35,7 @@ A secure and user-friendly Ethereum wallet application built with React and Hard
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ethereum-wallet.git
+   git clone https://github.com/secbyteX03/ethereum-wallet.git
    cd ethereum-wallet
    ```
 
